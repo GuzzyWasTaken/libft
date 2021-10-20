@@ -1,6 +1,6 @@
 int	ft_isdigit(char a)
 {
-	if ((a >= 49) && (a <= 57))
+	if ((a >= '0') && (a <= '9'))
 		return (1);
 	else
 		return (0);

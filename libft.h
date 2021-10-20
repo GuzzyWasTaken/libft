@@ -11,8 +11,7 @@ int		ft_isalnum(char a);
 int		ft_isalpha(char a);
 int		ft_isascii(int a);
 int		ft_isdigit(char a);
-int		isprint(int a);
-int		isprint(int a);
+int		ft_isprint(int a);
 void	*ft_memchr(const void *str, int c, size_t n);
 int		ft_memcmp(const void *str1, const void *str2, size_t n);
 void	*ft_memcpy(void *dest, const void *src, size_t n);
@@ -27,5 +26,6 @@ char	*ft_strnstr(const char *big, const char *small, size_t n);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 int		ft_tolower(int ch);
 int		ft_toupper(int ch);
+//char	*ft_strjoin(char const *s1, char const *s2);
 
 #endif

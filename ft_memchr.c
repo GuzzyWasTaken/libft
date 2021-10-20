@@ -2,7 +2,7 @@
 
 void	*ft_memchr(const void *str, int c, size_t n)
 {
-	const unsigned char	*p;
+	const char	*p;
 
 	p = str;
 	while (n > 0)
