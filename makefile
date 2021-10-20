@@ -29,18 +29,22 @@ SOURCE = ft_memset.c		\
 		ft_strdup.c			\
 		ft_substr.c			\
 
-OBJECTS = $(SOURCE:.c = .o)
+OBJECTS = $(SOURCE:.c=.o)
+
+$(NAME) : $(OBJECTS)
+		@ar -rcs $(NAME) $(OBJECTS)
+		@echo "You passed"
+
+all: $(NAME)
 
 %.o : %.c libft.h
+	@$(CC) $(FLAGS) -c $<
 	@echo "Compiling: $<"
-	@CC $(FLAGS) -c $< -o $@
-$(NAME) : $(OBJECTS)
-		@ar rcs $(NAME) $(OBJECTS)
-		@echo "You passed"
+
 
 clean:
 	rm -rf $(OBJECTS)
 
 fclean: clean
 
-all: $(NAME)
+re: fclean all

@@ -1,21 +1,20 @@
 #include <stddef.h>
-int	ft_memcmp(const void *str1, const void *str2, size_t n);
-size_t	ft_strlen(const char *s);
+#include "libft.h"
 
 char	*strnstr(const char *big, const char *small, size_t n)
 {
 	size_t	a;
 
-	a = strlen(*small);
+	a = ft_strlen(small);
 	if (*small == '\0')
-		return (*big);
+		return ((char *)big);
 	while (n != 0)
 	{
 		n--;
 		if (*big == *small)
 		{
-			if (memcmp(big, small, a) == 0)
-				return (big);
+			if (ft_memcmp(big, small, a) == 0)
+				return ((char *)big);
 		}
 		big++;
 	}

@@ -1,7 +1,7 @@
-int ft_isdigit(char a)
+int	ft_isdigit(char a)
 {
-    if ((a >= '49') && (a <= '57'))
-        return (1);
-    else
-        return (0);
+	if ((a >= 49) && (a <= 57))
+		return (1);
+	else
+		return (0);
 }

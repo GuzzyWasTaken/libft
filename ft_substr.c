@@ -17,5 +17,5 @@ char	*ft_substr(char const *s, unsigned int start,size_t len)
 		p[i] = s[i];
 		i++;
 	}
-	return (p)
+	return (p);
 }
