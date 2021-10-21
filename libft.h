@@ -26,6 +26,7 @@ char	*ft_strnstr(const char *big, const char *small, size_t n);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 int		ft_tolower(int ch);
 int		ft_toupper(int ch);
+void	*ft_memmove(void *dst, const void *src, size_t len);
 //char	*ft_strjoin(char const *s1, char const *s2);
 
 #endif
