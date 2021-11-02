@@ -1,18 +1,18 @@
-#include <stddef.h>
+#include "libft.h"
 
 size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 {
 	size_t	i;
 
-	i = 0;
-	if (dstsize == 0)
-		return (0);
-	while (src[i] && (dstsize > 1))
+	i = ft_strlen(src);
+	if (i == 0)
 	{
-		*dst = src[i];
-		dst++;
-		i++;
-		dstsize--;
+		*dst = '\0';
+		return (i);
 	}
-	return (*src);
+	if (dstsize == 0)
+		return (i);
+	dst = ft_memcpy(dst, src, dstsize - 1);
+	dst[dstsize - 1] = '\0';
+	return (i);
 }

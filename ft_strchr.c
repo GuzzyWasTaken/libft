@@ -1,12 +1,20 @@
 char	*ft_strchr(const char *src, int c)
 {
-	if (c == 0)
-		return (0);
-	while (*src)
+	int		i;
+	char	*ptr;
+
+	i = 0;
+	ptr = 0;
+	while (src[i])
 	{
-		if (*src == c)
-			return ((char *)src);
-		src++;
+		if (src[i] == c)
+		{
+			ptr = (char *)(src + i);
+			return (ptr);
+		}
+		i++;
 	}
-	return (0);
+	if (src[i] == c)
+		ptr = (char *)(src + i);
+	return (ptr);
 }

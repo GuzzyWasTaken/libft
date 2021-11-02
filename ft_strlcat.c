@@ -3,8 +3,19 @@
 
 size_t	ft_strlcat(char *dest, const char *src, size_t dstsize)
 {
-	if (ft_strlen(dest) == dstsize)
-		return(0);
+	size_t	i;
+	size_t	size;
+	size_t	srcsize;
 
-	return (size);
+	srcsize = ft_strlen(src);
+	size = ft_strlen(dest);
+	i = (ft_strlen(src + size - 1));
+	if (srcsize == 0)
+	{
+		*dest = '\0';
+		return (i);
+	}
+	if (dstsize == size)
+		return (i);
+	return (i);
 }

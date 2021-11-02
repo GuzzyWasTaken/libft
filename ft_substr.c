@@ -1,21 +1,26 @@
 #include <stdlib.h>
-#include <stddef.h>
+#include "libft.h"
 
-char	*ft_substr(char const *s, unsigned int start,size_t len)
+char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	char	*p;
-	int		i;
+	char				*p;
+	unsigned int		i;
+	unsigned int		count;
 
-	i = start;
+	count = 0;
+	i = ft_strlen(s);
+	if (len > i || start > i)
+		return ("");
 	p = malloc((len + 1) * sizeof (char));
-	if (p)
-	{
+	if (!p)
 		return (NULL);
-	}
-	while (start != 0)
+	while (len > 0)
 	{
-		p[i] = s[i];
-		i++;
+		p[count] = s[start];
+		count++;
+		start++;
+		len--;
 	}
+	p[count] = '\0';
 	return (p);
 }
