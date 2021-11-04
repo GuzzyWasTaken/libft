@@ -1,33 +1,40 @@
-#include "libft.h"
 #include <stdlib.h>
+#include "libft.h"
 
-//count amount of words
-//malloc amount of strings needed
-//
-
-char	**ft_stringmake(int wordamount, const char *s, char c, char **str);
-int		wordcount(char const *str, char c);
-int		wordleng(const char *s, char c);
-char	**ft_free(int j, char **str);
+static int	wordcount(char const *str, char c);
+static int	wordleng(const char *s, char c);
+static char	**ft_free(int j, char **str);
+static char	*ft_cpy(char const *s, size_t len);
 
 char	**ft_split(char const *s, char c)
 {
 	int		wordamount;
-	int		j;
 	char	**str;
+	int		j;
 
 	if (!s || !c)
 		return (NULL);
-	j = 0;
 	wordamount = wordcount(s, c);
 	str = (char **)malloc((wordamount + 1) * sizeof (char *));
 	if (!str)
 		return (NULL);
-	str = ft_stringmake(wordamount, s, c, str);
+	j = 0;
+	while (j < wordamount)
+	{
+		while (*s == c && *s != '\0')
+			s++;
+		str[j] = malloc((wordleng(s, c) + 1) * sizeof(char));
+		str[j] = ft_cpy(s, wordleng(s, c));
+		if (!str[j])
+			return (ft_free(j, str));
+		s += wordleng(s, c);
+		j++;
+	}
+	str[j] = (NULL);
 	return (str);
 }
 
-int	wordcount(char const *str, char c)
+static int	wordcount(char const *str, char c)
 {
 	int	i;
 	int	counter;
@@ -46,14 +53,14 @@ int	wordcount(char const *str, char c)
 	return (counter);
 }
 
-int	wordleng(const char *s, char c)
+static int	wordleng(const char *s, char c)
 {
 	int	len;
 
 	len = 0;
-	while (s && *s == c)
+	while (*s && *s == c)
 		s++;
-	while (s && *s != c)
+	while (*s && *s != c)
 	{
 		len++;
 		s++;
@@ -61,7 +68,24 @@ int	wordleng(const char *s, char c)
 	return (len);
 }
 
-char	**ft_free(int j, char **str)
+static char	*ft_cpy(char const *s, size_t len)
+{
+	char			*p;
+	unsigned int	count;
+
+	count = 0;
+	p = malloc((len + 1) * sizeof (char));
+	while (len > 0)
+	{
+		p[count] = s[count];
+		count++;
+		len--;
+	}
+	p[count] = '\0';
+	return (p);
+}
+
+static char	**ft_free(int j, char **str)
 {
 	j--;
 	while (j > 0)
@@ -72,39 +96,3 @@ char	**ft_free(int j, char **str)
 	free(str);
 	return (NULL);
 }
-
-char	**ft_stringmake(int wordamount, const char *s, char c, char **str)
-{
-	int		j;
-
-	j = 0;
-	while (j < wordamount)
-	{
-		while (*s == c && *s != '\0')
-			s++;
-		str[j] = ft_substr (s, 0, wordleng(s, c));
-		if (!str[j])
-			return (ft_free(j, str));
-		while (*s != c && *s != '\0')
-			s++;
-		j++;
-	}
-	str[j] = (NULL);
-	return (str);
-}
-
-// int main()
-// {
-// 	char	**str;
-// 	char	*p = "lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse";
-// 	int		i;
-
-// 	i = 0;
-// 	str = ft_split(p, ' ');
-// 	while (str[i])
-// 	{
-// 		printf("%s \n", str[i]);
-// 		i++;
-// 	}
-// 	return(0);
-// }
