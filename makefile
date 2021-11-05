@@ -39,10 +39,12 @@ SOURCE = ft_memset.c		\
 		ft_putendl_fd.c		\
 		ft_putnbr_fd.c		\
 		ft_split.c			\
+		ft_atoi.c			\
+
 
 OBJECTS = $(SOURCE:.c=.o)
 
-BONUS =
+
 $(NAME) : $(OBJECTS)
 		@ar -rcs $(NAME) $(OBJECTS)
 		@echo "You passed"
