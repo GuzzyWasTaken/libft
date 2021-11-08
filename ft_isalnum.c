@@ -1,4 +1,4 @@
-int	ft_isalnum(char a)
+int	ft_isalnum(int a)
 {
 	if ((a >= '0') && (a <= '9'))
 		return (1);

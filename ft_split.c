@@ -12,7 +12,7 @@ char	**ft_split(char const *s, char c)
 	char	**str;
 	int		j;
 
-	if (!s || !c)
+	if (!s)
 		return (NULL);
 	wordamount = wordcount(s, c);
 	str = (char **)malloc((wordamount + 1) * sizeof (char *));

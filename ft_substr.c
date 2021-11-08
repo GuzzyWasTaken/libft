@@ -9,6 +9,8 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 
 	count = 0;
 	i = ft_strlen(s);
+	if (!s)
+		return (NULL);
 	if (len > i || start > i)
 		return ("");
 	p = malloc((len + 1) * sizeof (char));

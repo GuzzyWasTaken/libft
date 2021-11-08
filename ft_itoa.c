@@ -10,6 +10,8 @@ char	*ft_itoa(int n)
 
 	len = numlen(n);
 	str = malloc((len + 1) * sizeof (char));
+	if (!str)
+		return (NULL);
 	if (n == 0)
 	{
 		*str = '0';
