@@ -8,11 +8,13 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	unsigned int		count;
 
 	count = 0;
-	i = ft_strlen(s);
 	if (!s)
 		return (NULL);
+	i = ft_strlen(s);
+	if (start >= ft_strlen(s))
+		return (ft_strdup("\0"));
 	if (len > i || start > i)
-		return ("");
+		return (NULL);
 	p = malloc((len + 1) * sizeof (char));
 	if (!p)
 		return (NULL);

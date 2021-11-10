@@ -21,5 +21,7 @@ int	ft_atoi(const char	*s)
 		num = (num * 10) + (*s - '0');
 		s++;
 	}
+	if (num > 9223372036854775807)
+		return (0);
 	return ((int)num * i);
 }

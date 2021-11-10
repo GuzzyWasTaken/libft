@@ -7,7 +7,7 @@ void	*ft_memcpy(void *dest, const void *src, size_t n)
 
 	d = dest;
 	s = src;
-	if (*d == '\0' && *s == '\0')
+	if (d == NULL && s == NULL)
 		return (0);
 	while (n > 0)
 	{

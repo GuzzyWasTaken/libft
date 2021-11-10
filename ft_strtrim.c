@@ -10,10 +10,10 @@ char	*ft_strtrim(char const *s1, char const *set)
 	int		i;
 
 	i = 0;
-	end = ft_strlen(s1);
 	start = 0;
 	if (!s1)
 		return (NULL);
+	end = ft_strlen(s1);
 	if (!set)
 		return ((char *)s1);
 	while (popper(s1[start], set) == 1)
