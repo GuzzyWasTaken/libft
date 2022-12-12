@@ -3,8 +3,6 @@ NAME = libft.a
 
 FLAGS = -Wall -Wextra -Werror
 
-CC = gcc
-
 # Source Files
 SOURCE = ft_memset.c		\
 		ft_bzero.c			\
@@ -59,5 +57,8 @@ clean:
 	rm -rf $(OBJECTS)
 
 fclean: clean
+	rm $(NAME)
 
 re: fclean all
+
+.PHONY: re clean fclean all
