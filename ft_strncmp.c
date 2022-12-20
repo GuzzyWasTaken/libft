@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        ::::::::            */
+/*   ft_strncmp.c                                       :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: auzochuk <auzochuk@student.codam.nl>         +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2022/12/20 12:25:58 by auzochuk      #+#    #+#                 */
+/*   Updated: 2022/12/20 12:25:59 by auzochuk      ########   odam.nl         */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <stddef.h>
 
 int	ft_strncmp(const char *str1, const char *str2, size_t n)

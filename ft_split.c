@@ -1,98 +1,95 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        ::::::::            */
+/*   ft_split.c                                         :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: auzochuk <auzochuk@student.codam.nl>         +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2022/12/20 12:26:24 by auzochuk      #+#    #+#                 */
+/*   Updated: 2022/12/20 12:27:25 by auzochuk      ########   odam.nl         */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <stdlib.h>
 #include "libft.h"
 
-static int	wordcount(char const *str, char c);
-static int	wordleng(const char *s, char c);
-static char	**ft_free(int j, char **str);
-static char	*ft_cpy(char const *s, size_t len);
+int	wrcount(char const *str, char c)
+{
+	int	count;
+
+	count = 0;
+	while (*str != '\0')
+	{
+		if (*str != c)
+		{
+			count++;
+			while (*str != '\0' && *str != c)
+				str++;
+		}
+		else
+			str++;
+	}
+	return (count);
+}
+
+int	wrlength(char const *str, char c)
+{
+	int	i;
+
+	i = 0;
+	while (str[i] != '\0' && str[i] != c)
+	{
+		i++;
+	}
+	return (i);
+}
+
+void	clean(char **out, int i)
+{
+	while (i)
+	{
+		i--;
+		free(out[i]);
+	}
+	free(out);
+}
+
+char	**storage(int wordcount, char **out, char const *s, char c)
+{
+	int		i;
+	int		count;
+	int		length;
+
+	count = 0;
+	i = 0;
+	while (i < wordcount)
+	{
+		while (s[count] == c)
+			count++;
+		length = wrlength(&s[count], c);
+		out[i] = (char *)malloc(sizeof(char) * (length + 1));
+		if (!out[i])
+			clean(out, i);
+		ft_strlcpy(out[i], &s[count], length + 1);
+		out[i][length] = '\0';
+		i++;
+		count += length;
+	}
+	out[i] = 0;
+	return (out);
+}
 
 char	**ft_split(char const *s, char c)
 {
-	int		wordamount;
-	char	**str;
-	int		j;
+	char	**out;
+	int		wordcount;
 
-	if (!s)
-		return (NULL);
-	wordamount = wordcount(s, c);
-	str = (char **)malloc((wordamount + 1) * sizeof (char *));
-	if (!str)
-		return (NULL);
-	j = 0;
-	while (j < wordamount)
-	{
-		while (*s == c && *s != '\0')
-			s++;
-		str[j] = malloc((wordleng(s, c) + 1) * sizeof(char));
-		str[j] = ft_cpy(s, wordleng(s, c));
-		if (!str[j])
-			return (ft_free(j, str));
-		s += wordleng(s, c);
-		j++;
-	}
-	str[j] = (NULL);
-	return (str);
-}
-
-static int	wordcount(char const *str, char c)
-{
-	int	i;
-	int	counter;
-
-	counter = 0;
-	i = 0;
-	while (str[i])
-	{
-		while (str[i] == c)
-			i++;
-		if (str[i] != c && str[i] != 0)
-			counter++;
-		while (str[i] != c && str[i] != 0)
-			i++;
-	}
-	return (counter);
-}
-
-static int	wordleng(const char *s, char c)
-{
-	int	len;
-
-	len = 0;
-	while (*s && *s == c)
-		s++;
-	while (*s && *s != c)
-	{
-		len++;
-		s++;
-	}
-	return (len);
-}
-
-static char	*ft_cpy(char const *s, size_t len)
-{
-	char			*p;
-	unsigned int	count;
-
-	count = 0;
-	p = malloc((len + 1) * sizeof (char));
-	while (len > 0)
-	{
-		p[count] = s[count];
-		count++;
-		len--;
-	}
-	p[count] = '\0';
-	return (p);
-}
-
-static char	**ft_free(int j, char **str)
-{
-	j--;
-	while (j > 0)
-	{
-		free(str[j]);
-		j--;
-	}
-	free(str);
-	return (NULL);
+	if (s == 0)
+		return (0);
+	wordcount = wrcount(s, c);
+	out = malloc(sizeof(char *) * (wordcount + 1));
+	if (!out)
+		return (0);
+	out = storage(wordcount, out, s, c);
+	return (out);
 }

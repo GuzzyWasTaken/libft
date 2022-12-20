@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        ::::::::            */
+/*   ft_strmapi.c                                       :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: auzochuk <auzochuk@student.codam.nl>         +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2022/12/20 12:26:01 by auzochuk      #+#    #+#                 */
+/*   Updated: 2022/12/20 12:26:02 by auzochuk      ########   odam.nl         */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
